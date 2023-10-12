@@ -19,7 +19,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Locatii>> Get()
+        public async Task<ActionResult<List<Locatii>>> Get()
         {
             try
             {
@@ -39,6 +39,21 @@ namespace Backend.Controllers
             try
             {
                 var locatii = await _context.Locatii.FirstOrDefaultAsync(x=> x.IdLocatie == id);
+                return Ok(locatii);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while fetching Locatii from the database.");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Locatii>> GetBydId(ulong id)
+        {
+            try
+            {
+                var locatii = await _context.Locatii.FirstOrDefaultAsync(x => x.IdLocatie == id);
                 return Ok(locatii);
             }
             catch (Exception ex)

@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using System;
-using Backend.DatabaseContext;
 using Backend.Models;
 
 var builder = WebApplication.CreateBuilder(args);
