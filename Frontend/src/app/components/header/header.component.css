@@ -1,0 +1,21 @@
+.header {
+    height: 50px;
+    background-color:bisque;
+    width: 100%;
+    margin: 0px;
+    display: flex;
+}
+
+.search-bar {
+    display: flex;
+    height: 30px;
+    width: 200px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
