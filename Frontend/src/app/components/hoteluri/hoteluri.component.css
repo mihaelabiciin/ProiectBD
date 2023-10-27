@@ -1,9 +1,8 @@
 .eticheta{
-    font-size: 22px;
-    text-align: center; /* Adaugă această linie pentru a centra textul */
-   
-   
-   
-    
+    text-align: center;
 }
 
+.label-name {
+    display: inline-block;
+    width: 150px;
+}

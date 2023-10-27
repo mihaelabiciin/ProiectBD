@@ -1,3 +1,5 @@
-.eticheta{
-    font-size: 30px;
+
+.label-name {
+    display: inline-block;
+    width: 80px;
 }

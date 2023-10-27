@@ -10,6 +10,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LocatiiComponent } from './components/locatii/locatii.component';
 import { HoteluriComponent } from './components/hoteluri/hoteluri.component';
 import { RestauranteComponent } from './components/restaurante/restaurante.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { RestauranteComponent } from './components/restaurante/restaurante.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
