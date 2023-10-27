@@ -16,5 +16,7 @@ export class AppComponent {
 
   getSomeData() {
     return this.http.get(`${environment.baseUrl}/Locatii`).subscribe();
+    return this.http.get(`${environment.baseUrl}/Hoteluri`).subscribe();
+    return this.http.get(`${environment.baseUrl}/Restaurante`).subscribe();
   }
 }
