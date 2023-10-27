@@ -1,5 +1,5 @@
 .header {
-    height: 50px;
+    height: 70px;
     background-color:bisque;
     width: 100%;
     margin: 0px;
@@ -18,4 +18,18 @@
     display: flex;
     align-items: center;
     margin-left: 20px;
+}
+
+.logo{
+    display:flex;
+    height: 65px;
+    margin-left: 25px;
+    
+}
+
+
+.search-bar_icon{
+    display:flex;
+    height: 22px;
+    margin-left: 5px;
 }
