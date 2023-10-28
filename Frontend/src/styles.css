@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~@ng-select/ng-select/themes/default.theme.css";
 body {
     margin:0px;
 }
@@ -86,6 +87,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-sizing: border-box;
     font-size: 16px;
     font-family:  Roboto;
+    width: 250px;
   }
 
   .eticheta {
@@ -95,4 +97,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .error {
     color: red;
+  }
+
+  .custom-dropdown {
+    width: 250px;
   }
