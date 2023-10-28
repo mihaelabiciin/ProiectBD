@@ -1,4 +1,4 @@
-<div class="header" matTooltip="Change the user type">
+<div class="header">
     <div>
         <img class="logo" src="../../../assets/imagini/Logo.png">
     </div>
@@ -7,9 +7,15 @@
         <img class="search-bar-icon" src="../../../assets/imagini/search bar icon.png">
     </div>
     <div class="user-icon-wrapper">
-        Admin
+        {{this.userType}}
         <div>
-            <img class="user-icon" src="../../../assets/imagini/user.png" matTooltip="Change the user type">
-        </div>
+            <mat-menu #userMenu="matMenu">
+              <button mat-menu-item (click)="selectUserType('User')">User</button>
+              <button mat-menu-item (click)="selectUserType('Admin')">Admin</button>
+            </mat-menu>
+            <button class="user-button" [matMenuTriggerFor]="userMenu">
+              <img class="user-icon" src="../../../assets/imagini/user.png" matTooltip="Change the user type">
+            </button>
+          </div>
     </div>
 </div>

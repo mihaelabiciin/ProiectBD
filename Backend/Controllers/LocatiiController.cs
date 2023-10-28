@@ -19,11 +19,11 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Locatii>>> Get()
+        public async Task<ActionResult<List<Tbllocatii>>> Get()
         {
             try
             {
-                var locatii = await _context.Locatii.ToListAsync();
+                var locatii = await _context.Tbllocatii.ToListAsync();
                 return Ok(locatii);
             }
             catch (Exception ex)
@@ -34,11 +34,11 @@ namespace Backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Locatii>> GetById(ulong id)
+        public async Task<ActionResult<Tbllocatii>> GetById(ulong id)
         {
             try
             {
-                var locatii = await _context.Locatii.FirstOrDefaultAsync(x=> x.IdLocatie == id);
+                var locatii = await _context.Tbllocatii.FirstOrDefaultAsync(x => x.Id == id);
                 return Ok(locatii);
             }
             catch (Exception ex)
@@ -49,12 +49,13 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Locatii>> GetBydId(ulong id)
+        public async Task<ActionResult<Tbllocatii>> PostLocatie(Tbllocatii locatie)
         {
             try
             {
-                var locatii = await _context.Locatii.FirstOrDefaultAsync(x => x.IdLocatie == id);
-                return Ok(locatii);
+                var newLocatie = await _context.Tbllocatii.AddAsync(locatie);
+                await _context.SaveChangesAsync();
+                return Ok(newLocatie.Entity);
             }
             catch (Exception ex)
             {

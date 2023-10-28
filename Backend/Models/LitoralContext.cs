@@ -15,11 +15,15 @@ public partial class LitoralContext : DbContext
     {
     }
 
-    public virtual DbSet<Hoteluri> Hoteluri { get; set; }
+    public virtual DbSet<Tblactivitati> Tblactivitati { get; set; }
 
-    public virtual DbSet<Locatii> Locatii { get; set; }
+    public virtual DbSet<Tblcamere> Tblcamere { get; set; }
 
-    public virtual DbSet<Restaurante> Restaurante { get; set; }
+    public virtual DbSet<Tblhoteluri> Tblhoteluri { get; set; }
+
+    public virtual DbSet<Tbllocatii> Tbllocatii { get; set; }
+
+    public virtual DbSet<Tblrestaurante> Tblrestaurante { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -31,69 +35,133 @@ public partial class LitoralContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
-        modelBuilder.Entity<Hoteluri>(entity =>
+        modelBuilder.Entity<Tblactivitati>(entity =>
         {
-            entity.HasKey(e => e.Idhotel).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("hoteluri");
+            entity.ToTable("tblactivitati");
 
-            entity.HasIndex(e => e.Idlocatie, "fk_hoteluri_locatii_idx");
+            entity.HasIndex(e => e.IdLocatie, "fk_tblActivitati_tblLocatii");
 
-            entity.Property(e => e.Idhotel).HasColumnName("idhotel");
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Antrenor)
+                .HasDefaultValueSql("'0'")
+                .HasColumnName("antrenor");
+            entity.Property(e => e.Contact)
+                .HasMaxLength(10)
+                .HasColumnName("contact");
+            entity.Property(e => e.IdLocatie).HasColumnName("idLocatie");
+            entity.Property(e => e.Nume)
+                .HasMaxLength(45)
+                .HasColumnName("nume");
+            entity.Property(e => e.Pret).HasColumnName("pret");
+
+            entity.HasOne(d => d.IdLocatieNavigation).WithMany(p => p.Tblactivitatis)
+                .HasForeignKey(d => d.IdLocatie)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_tblActivitati_tblLocatii");
+        });
+
+        modelBuilder.Entity<Tblcamere>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tblcamere");
+
+            entity.HasIndex(e => e.IdHotel, "fk_tblCamere_tblHoteluri");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AerConditionat).HasColumnName("aerConditionat");
+            entity.Property(e => e.Balcon).HasColumnName("balcon");
+            entity.Property(e => e.Frigider).HasColumnName("frigider");
+            entity.Property(e => e.IdHotel).HasColumnName("idHotel");
+            entity.Property(e => e.Pret).HasColumnName("pret");
+            entity.Property(e => e.Tip)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'Nespecificat'")
+                .HasColumnName("tip");
+            entity.Property(e => e.WiFi).HasColumnName("wiFi");
+
+            entity.HasOne(d => d.IdHotelNavigation).WithMany(p => p.Tblcameres)
+                .HasForeignKey(d => d.IdHotel)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_tblCamere_tblHoteluri");
+        });
+
+        modelBuilder.Entity<Tblhoteluri>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tblhoteluri");
+
+            entity.HasIndex(e => e.IdLocatie, "fk_tblHoteluri_tblLocatii");
+
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Adresa)
                 .HasMaxLength(100)
                 .HasColumnName("adresa");
-            entity.Property(e => e.Hoteluricol)
-                .HasMaxLength(45)
-                .HasColumnName("hoteluricol");
-            entity.Property(e => e.Idlocatie).HasColumnName("idlocatie");
-            entity.Property(e => e.NrStele).HasColumnName("nr_stele");
-            entity.Property(e => e.NumeHotel)
-                .HasMaxLength(45)
-                .HasColumnName("nume_hotel");
-            entity.Property(e => e.Scorh).HasColumnName("scorh");
-
-            entity.HasOne(d => d.IdlocatieNavigation).WithMany(p => p.Hoteluris)
-                .HasForeignKey(d => d.Idlocatie)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("fk_hoteluri_locatii");
-        });
-
-        modelBuilder.Entity<Locatii>(entity =>
-        {
-            entity.HasKey(e => e.IdLocatie).HasName("PRIMARY");
-
-            entity.ToTable("locatii");
-
+            entity.Property(e => e.Contact)
+                .HasMaxLength(10)
+                .HasColumnName("contact");
             entity.Property(e => e.IdLocatie).HasColumnName("idLocatie");
-            entity.Property(e => e.NumeLocatie)
+            entity.Property(e => e.MicDejun).HasColumnName("micDejun");
+            entity.Property(e => e.NotaRecenzieHotel).HasColumnName("notaRecenzieHotel");
+            entity.Property(e => e.NumarStele).HasColumnName("numarStele");
+            entity.Property(e => e.Nume)
                 .HasMaxLength(45)
-                .HasColumnName("nume_locatie");
-            entity.Property(e => e.ScorL).HasColumnName("scorL");
+                .HasColumnName("nume");
+            entity.Property(e => e.PretMicDejun).HasColumnName("pretMicDejun");
+
+            entity.HasOne(d => d.IdLocatieNavigation).WithMany(p => p.Tblhoteluris)
+                .HasForeignKey(d => d.IdLocatie)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_tblHoteluri_tblLocatii");
         });
 
-        modelBuilder.Entity<Restaurante>(entity =>
+        modelBuilder.Entity<Tbllocatii>(entity =>
         {
-            entity.HasKey(e => e.Idrestaurant).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("restaurante");
+            entity.ToTable("tbllocatii");
 
-            entity.HasIndex(e => e.Idlocatie, "fk_restaurante_locatii_idx");
-
-            entity.Property(e => e.Idrestaurant).HasColumnName("idrestaurant");
-            entity.Property(e => e.Adresar)
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Descriere)
+                .HasMaxLength(150)
+                .HasColumnName("descriere");
+            entity.Property(e => e.Nume)
                 .HasMaxLength(45)
-                .HasColumnName("adresar");
-            entity.Property(e => e.Idlocatie).HasColumnName("idlocatie");
-            entity.Property(e => e.NumeRestaurant)
-                .HasMaxLength(45)
-                .HasColumnName("nume_restaurant");
-            entity.Property(e => e.Scorr).HasColumnName("scorr");
+                .HasColumnName("nume");
+        });
 
-            entity.HasOne(d => d.IdlocatieNavigation).WithMany(p => p.Restaurantes)
-                .HasForeignKey(d => d.Idlocatie)
+        modelBuilder.Entity<Tblrestaurante>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tblrestaurante");
+
+            entity.HasIndex(e => e.IdLocatie, "fk_tblRestaurante_tblLocatii");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Adresa)
+                .HasMaxLength(100)
+                .HasColumnName("adresa");
+            entity.Property(e => e.Contact)
+                .HasMaxLength(10)
+                .HasColumnName("contact");
+            entity.Property(e => e.IdLocatie).HasColumnName("idLocatie");
+            entity.Property(e => e.NotaRecenzie).HasColumnName("notaRecenzie");
+            entity.Property(e => e.Nume)
+                .HasMaxLength(45)
+                .HasColumnName("nume");
+            entity.Property(e => e.SpecificRestaurant)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'Nespecificat'")
+                .HasColumnName("specificRestaurant");
+
+            entity.HasOne(d => d.IdLocatieNavigation).WithMany(p => p.Tblrestaurantes)
+                .HasForeignKey(d => d.IdLocatie)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("fk_restaurante_locatii");
+                .HasConstraintName("fk_tblRestaurante_tblLocatii");
         });
 
         OnModelCreatingPartial(modelBuilder);

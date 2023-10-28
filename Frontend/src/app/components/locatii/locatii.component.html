@@ -6,16 +6,38 @@
     <div class="page-container">
         <div class="d-flex justify-content-center">Adauga Locatie</div>
         <div class="eticheta">
-            <label class="label-name" for="numeLocatie">Locatia:</label>
-            <input class="textbox-custom" type="text" id="numeLocatie" name="numeLocatie">
+            <label class="label-name" for="numeLocatie">Nume:</label>
+            <input class="textbox-custom" type="text" [(ngModel)]="this.nume">
         </div>
         <div class="eticheta">
-            <label class="label-name" for="Scor">Scor:</label>
-            <input type="text" id="Scor" name="Scor">
+            <label class="label-name center-textbox-label" for="Scor">Descriere:</label>
+            <textarea class="custom-textbox" [(ngModel)]="this.descriere"></textarea>
+        </div>
+        <div class="error">
+            {{this.addError}}
         </div>
         <div class="mt-3">
-        <button class="custom-button" type="button">Adauga</button>
+            <button class="custom-button" type="button" (click)="addLocatie()">Adauga</button>
         </div>
+    </div>
+
+    <div class="page-container">
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nume</th>
+                <th>Descriere</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let locatie of locatii">
+                <td>{{ locatie.id }}</td>
+                <td>{{ locatie.nume }}</td>
+                <td>{{ locatie.descriere }}</td>
+              </tr>
+            </tbody>
+          </table>
     </div>
     
 </div>
