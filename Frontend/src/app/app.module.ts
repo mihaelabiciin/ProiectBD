@@ -12,6 +12,9 @@ import { HoteluriComponent } from './components/hoteluri/hoteluri.component';
 import { RestauranteComponent } from './components/restaurante/restaurante.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

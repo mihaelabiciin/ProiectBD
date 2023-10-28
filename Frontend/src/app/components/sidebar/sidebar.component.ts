@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,25 @@ export class SidebarComponent {
   availableTabs = ['restaurante', 'locatii', 'hoteluri'];
   selectedTab: string = "restaurante"
 
+  constructor(private location: Location)
+  {
+   
+  }
   ngOnInit() {
+    //pentru a selecta tabul la refresh
+    const currentUrl = this.location.path();   
+    this.availableTabs.forEach(element => {
+      if(currentUrl.includes(element))
+      {
+        const tab = document.getElementById(element);
+        if (tab) {
+          
+          tab.classList.add('selected-tab');
+          }
+      }
+    });
+    //end pentru a selecta tabul la refresh
+
   }
   tabSelected(id: string) {
     

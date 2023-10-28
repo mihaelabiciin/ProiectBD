@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  userType: string = "Admin"
+  selectUserType(userType: string) {
+    this.userType = userType;
+  }
 }

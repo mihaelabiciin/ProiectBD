@@ -42,6 +42,11 @@
 .user-icon {
     display:flex;
     height: 22px;
+}
+
+.user-button {
+    border: none;
+    background-color: transparent;
     margin-right: 20px;
     margin-left: 10px;
     cursor: pointer;
