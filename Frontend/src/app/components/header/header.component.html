@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" *ngIf="this.autorizationService.isAdmin">
     <div>
         <img class="logo" src="../../../assets/imagini/Logo.png">
     </div>
@@ -18,4 +18,28 @@
             </button>
           </div>
     </div>
+</div>
+
+
+<div class="user-header" *ngIf="!this.autorizationService.isAdmin">
+  <div class="header-options">
+    <div id="home" class="sidebar-option">
+        <label class="label-text" routerLink="/home">HOME</label>
+    </div>
+    <div id="plan-trip" class="sidebar-option" routerLink="/plan-trip">
+      <label class="label-text">PLAN YOUR TRIP</label>
+  </div>
+  </div>
+  <div class="user-icon-wrapper-user-view">
+    {{this.userType}}
+    <div>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="selectUserType('User')">User</button>
+          <button mat-menu-item (click)="selectUserType('Admin')">Admin</button>
+        </mat-menu>
+        <button class="user-button" [matMenuTriggerFor]="userMenu">
+          <img class="user-icon" src="../../../assets/imagini/user.png" matTooltip="Change the user type">
+        </button>
+      </div>
+</div>
 </div>

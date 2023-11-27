@@ -1,0 +1,63 @@
+.home-icon {
+    width: 100%;
+}
+
+.home-page {
+    
+    background-image: url("/assets/imagini/user-home.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+    width: 90%;
+    min-width: 1300px;
+    display: flex;
+    
+    flex-direction: column;
+}
+
+.home-body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.my-litoral {
+    background-color: transparent;
+    font-size: 70px;
+    vertical-align: center;
+    align-self: center;
+    height: 100px;
+    margin-top: 200px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.trip-button {
+    display: flex;
+    background-color: #5a8c65;
+    border: none;
+    padding: 10px 40px;
+    font-size: 16px;
+    color: white;
+    box-shadow: 
+        0 0 0 1px white,
+        0 0 0 3px #5a8c65,
+        0 0 0 5px white;
+
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+.trip-button:hover {
+    box-shadow: 
+        0 0 0 1px #5a8c65,
+        0 0 0 3px white,
+        0 0 0 5px #5a8c65;
+        background-color: white;
+        color: #5a8c65;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+}

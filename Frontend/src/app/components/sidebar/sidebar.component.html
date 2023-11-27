@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" *ngIf="this.autorizationService.isAdmin">
     <div id="locatii" class="sidebar-option" routerLink="/locatii" (click)="tabSelected('locatii')">
         <img class="icon" src="../../../assets/imagini/location.png">
         <label class="label-text">Locatii</label>
@@ -7,7 +7,7 @@
         <img class="icon" src="../../../assets/imagini/hotel.png">
         <label class="label-text">Hoteluri</label>
     </div>
-    <div id="restaurante" class="sidebar-option" routerLink="/restaurante" (click)="tabSelected('restaurante')">
+    <div *ngIf="this.autorizationService.getAdminRights()" id="restaurante" class="sidebar-option" routerLink="/restaurante" (click)="tabSelected('restaurante')">
         <img class="icon" src="../../../assets/imagini/restaurant.png">
         <label class="label-text">Restaurante</label>
     </div>
