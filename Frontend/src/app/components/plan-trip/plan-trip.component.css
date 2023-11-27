@@ -1,0 +1,92 @@
+.statiuni-title {
+    width: 100%;
+}
+
+.statiuni {
+    align-self: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+}
+
+.home-page {
+    display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.content-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+  }
+.cursor:hover {
+  background-color: rebeccapurple;
+}
+
+.image-section {
+  flex: 1;
+  max-width: 50%;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.text-section:hover,
+.image-section:hover {
+  width: 80%;
+}
+
+.hover-animate:hover {
+  background-color: #eeeeee;
+}
+
+.hover-animate:hover  > :first-child {
+  transform: scale(0.9);
+}
+
+.text-section {
+  flex: 1;
+  max-width: 50%;
+  padding-left: 20px;
+  vertical-align: center;
+  display: flex;
+  flex-direction: column;
+}
+  
+  img {
+    width: 100%;
+    height: 100%; /* Will take the height of the container */
+    object-fit: contain; /* Maintains aspect ratio, will add space if needed */
+  }
+  
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+    }
+  
+    .image-section, .text-section {
+      max-width: 100%;
+    }
+  
+    .image-section {
+      height: auto; /* On smaller screens, height can be auto to maintain aspect ratio */
+    }
+  }
+
+
+.nume-statiune {
+  font-size: 24px;
+  font-family:Montserrat;
+  color: #5a8c65; 
+  margin:10px; 
+  display: flex; 
+  justify-content: center;
+}

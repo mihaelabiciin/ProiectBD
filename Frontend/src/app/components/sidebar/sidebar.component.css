@@ -14,9 +14,25 @@
     padding-left: 20px;
 }
 
+.label-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px; /* Adjust the thickness of the underline as needed */
+    background-color: transparent; /* Initial color of the underline */
+    transition: background-color 0.3s ease; /* Animation duration and easing */
+}
+
 .label-text {
     margin-left: 10px;
+    cursor: pointer;
 }
+
+.sidebar-option:hover .label-text::after {
+    background-color: #007bff; /* Change to the desired color on hover */
+  }
 
 .nav-link {
     width: 100%;

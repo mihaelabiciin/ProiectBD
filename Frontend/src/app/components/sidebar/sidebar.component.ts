@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { AutorizationService } from 'src/app/services/autorization.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,8 @@ export class SidebarComponent {
   availableTabs = ['restaurante', 'locatii', 'hoteluri'];
   selectedTab: string = "restaurante"
 
-  constructor(private location: Location)
+  constructor(private location: Location, 
+    public autorizationService: AutorizationService)
   {
    
   }

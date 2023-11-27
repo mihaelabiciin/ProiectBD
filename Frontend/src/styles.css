@@ -102,3 +102,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .custom-dropdown {
     width: 250px;
   }
+
+  /* .sidebar-option {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 20px;
+} */
+
+.label-text {
+    margin-left: 10px;
+    cursor: pointer;
+    color:#525252
+}
