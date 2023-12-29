@@ -23,7 +23,7 @@ namespace Backend.Controllers
         {
             try
             {
-                var locatii = await _context.Tbllocatii.ToListAsync();
+                var locatii = await _context.Tbllocatiis.ToListAsync();
                 return Ok(locatii);
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Backend.Controllers
         {
             try
             {
-                var locatii = await _context.Tbllocatii.FirstOrDefaultAsync(x => x.Id == id);
+                var locatii = await _context.Tbllocatiis.FirstOrDefaultAsync(x => x.IdLocatie == id);
                 return Ok(locatii);
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace Backend.Controllers
         {
             try
             {
-                var newLocatie = await _context.Tbllocatii.AddAsync(locatie);
+                var newLocatie = await _context.Tbllocatiis.AddAsync(locatie);
                 await _context.SaveChangesAsync();
                 return Ok(newLocatie.Entity);
             }

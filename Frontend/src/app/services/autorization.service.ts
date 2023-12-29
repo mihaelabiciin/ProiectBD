@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ export class AutorizationService {
 
   isAdmin: boolean = localStorage.getItem('isAdmin') == 'true';
 
-  constructor() { 
+  constructor(private router: Router) { 
   }
 
   changeAdminRights(type: string) {
@@ -20,5 +21,24 @@ export class AutorizationService {
 
   getAdminRights() {
     return this.isAdmin;
+  }
+
+  checkUser() {
+    if (localStorage.getItem('userToken') === null) {
+      this.router.navigateByUrl('/login');
+      return false;
+    }
+    return true;
+  }
+
+  setUser(email: string | undefined) {
+    console.log(email);
+    if (email == undefined)
+    {
+      localStorage.removeItem('userToken');
+    }
+    else {
+      localStorage.setItem('userToken', email);
+    }
   }
 }

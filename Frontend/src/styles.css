@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 body {
     margin:0px;
 }
@@ -115,4 +117,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-left: 10px;
     cursor: pointer;
     color:#525252
+}
+
+.center-align {
+    display: flex;
+    justify-content: center;
 }

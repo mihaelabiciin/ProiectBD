@@ -5,7 +5,7 @@ namespace Backend.Models;
 
 public partial class Tbllocatii
 {
-    public ushort Id { get; set; }
+    public ushort IdLocatie { get; set; }
 
     public string Nume { get; set; } = null!;
 

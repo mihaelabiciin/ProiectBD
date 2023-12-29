@@ -15,15 +15,17 @@ public partial class LitoralContext : DbContext
     {
     }
 
-    public virtual DbSet<Tblactivitati> Tblactivitati { get; set; }
+    public virtual DbSet<Tblactivitati> Tblactivitatis { get; set; }
 
-    public virtual DbSet<Tblcamere> Tblcamere { get; set; }
+    public virtual DbSet<Tblcamere> Tblcameres { get; set; }
 
-    public virtual DbSet<Tblhoteluri> Tblhoteluri { get; set; }
+    public virtual DbSet<Tblhoteluri> Tblhoteluris { get; set; }
 
-    public virtual DbSet<Tbllocatii> Tbllocatii { get; set; }
+    public virtual DbSet<Tbllocatii> Tbllocatiis { get; set; }
 
-    public virtual DbSet<Tblrestaurante> Tblrestaurante { get; set; }
+    public virtual DbSet<Tblrestaurante> Tblrestaurantes { get; set; }
+
+    public virtual DbSet<Tbluser> Tblusers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -37,16 +39,14 @@ public partial class LitoralContext : DbContext
 
         modelBuilder.Entity<Tblactivitati>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(e => e.IdActivitate).HasName("PRIMARY");
 
             entity.ToTable("tblactivitati");
 
             entity.HasIndex(e => e.IdLocatie, "fk_tblActivitati_tblLocatii");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Antrenor)
-                .HasDefaultValueSql("'0'")
-                .HasColumnName("antrenor");
+            entity.Property(e => e.IdActivitate).HasColumnName("idActivitate");
+            entity.Property(e => e.Antrenor).HasColumnName("antrenor");
             entity.Property(e => e.Contact)
                 .HasMaxLength(10)
                 .HasColumnName("contact");
@@ -64,13 +64,13 @@ public partial class LitoralContext : DbContext
 
         modelBuilder.Entity<Tblcamere>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(e => e.IdCamera).HasName("PRIMARY");
 
             entity.ToTable("tblcamere");
 
             entity.HasIndex(e => e.IdHotel, "fk_tblCamere_tblHoteluri");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IdCamera).HasColumnName("idCamera");
             entity.Property(e => e.AerConditionat).HasColumnName("aerConditionat");
             entity.Property(e => e.Balcon).HasColumnName("balcon");
             entity.Property(e => e.Frigider).HasColumnName("frigider");
@@ -78,7 +78,7 @@ public partial class LitoralContext : DbContext
             entity.Property(e => e.Pret).HasColumnName("pret");
             entity.Property(e => e.Tip)
                 .HasMaxLength(50)
-                .HasDefaultValueSql("'Nespecificat'")
+                .HasDefaultValueSql("'Single'")
                 .HasColumnName("tip");
             entity.Property(e => e.WiFi).HasColumnName("wiFi");
 
@@ -90,13 +90,13 @@ public partial class LitoralContext : DbContext
 
         modelBuilder.Entity<Tblhoteluri>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(e => e.IdHotel).HasName("PRIMARY");
 
             entity.ToTable("tblhoteluri");
 
             entity.HasIndex(e => e.IdLocatie, "fk_tblHoteluri_tblLocatii");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IdHotel).HasColumnName("idHotel");
             entity.Property(e => e.Adresa)
                 .HasMaxLength(100)
                 .HasColumnName("adresa");
@@ -120,13 +120,13 @@ public partial class LitoralContext : DbContext
 
         modelBuilder.Entity<Tbllocatii>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(e => e.IdLocatie).HasName("PRIMARY");
 
             entity.ToTable("tbllocatii");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IdLocatie).HasColumnName("idLocatie");
             entity.Property(e => e.Descriere)
-                .HasMaxLength(150)
+                .HasMaxLength(1000)
                 .HasColumnName("descriere");
             entity.Property(e => e.Nume)
                 .HasMaxLength(45)
@@ -135,13 +135,13 @@ public partial class LitoralContext : DbContext
 
         modelBuilder.Entity<Tblrestaurante>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(e => e.IdRestaurant).HasName("PRIMARY");
 
             entity.ToTable("tblrestaurante");
 
             entity.HasIndex(e => e.IdLocatie, "fk_tblRestaurante_tblLocatii");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IdRestaurant).HasColumnName("idRestaurant");
             entity.Property(e => e.Adresa)
                 .HasMaxLength(100)
                 .HasColumnName("adresa");
@@ -162,6 +162,22 @@ public partial class LitoralContext : DbContext
                 .HasForeignKey(d => d.IdLocatie)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_tblRestaurante_tblLocatii");
+        });
+
+        modelBuilder.Entity<Tbluser>(entity =>
+        {
+            entity.HasKey(e => e.IdUser).HasName("PRIMARY");
+
+            entity.ToTable("tblusers");
+
+            entity.Property(e => e.IdUser).HasColumnName("idUser");
+            entity.Property(e => e.Email)
+                .HasMaxLength(45)
+                .HasColumnName("email");
+            entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
+            entity.Property(e => e.Password)
+                .HasMaxLength(45)
+                .HasColumnName("password");
         });
 
         OnModelCreatingPartial(modelBuilder);

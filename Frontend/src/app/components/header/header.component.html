@@ -1,4 +1,5 @@
-<div class="header" *ngIf="this.autorizationService.isAdmin">
+<!-- admin header -->
+<div class="header" *ngIf="this.authorizationService.isAdmin">
     <div>
         <img class="logo" src="../../../assets/imagini/Logo.png">
     </div>
@@ -7,21 +8,21 @@
         <img class="search-bar-icon" src="../../../assets/imagini/search bar icon.png">
     </div>
     <div class="user-icon-wrapper">
-        {{this.userType}}
+        {{this.userEmail}}
         <div>
             <mat-menu #userMenu="matMenu">
-              <button mat-menu-item (click)="selectUserType('User')">User</button>
-              <button mat-menu-item (click)="selectUserType('Admin')">Admin</button>
+              <button mat-menu-item (click)="editProfile()">Editeaza profilul</button>
+              <button mat-menu-item (click)="logout()">Log out</button>
             </mat-menu>
             <button class="user-button" [matMenuTriggerFor]="userMenu">
-              <img class="user-icon" src="../../../assets/imagini/user.png" matTooltip="Change the user type">
+              <img class="user-icon" src="../../../assets/imagini/user.png" matTooltip="User">
             </button>
           </div>
     </div>
 </div>
 
-
-<div class="user-header" *ngIf="!this.autorizationService.isAdmin">
+<!-- user header -->
+<div class="user-header" *ngIf="!this.authorizationService.isAdmin">
   <div class="header-options">
     <div id="home" class="sidebar-option">
         <label class="label-text" routerLink="/home">HOME</label>
@@ -31,14 +32,14 @@
   </div>
   </div>
   <div class="user-icon-wrapper-user-view">
-    {{this.userType}}
+    {{this.userEmail}}
     <div>
         <mat-menu #userMenu="matMenu">
-          <button mat-menu-item (click)="selectUserType('User')">User</button>
-          <button mat-menu-item (click)="selectUserType('Admin')">Admin</button>
+          <button mat-menu-item (click)="editProfile()">Editeaza profilul</button>
+          <button mat-menu-item (click)="logout()">Log out</button>
         </mat-menu>
         <button class="user-button" [matMenuTriggerFor]="userMenu">
-          <img class="user-icon" src="../../../assets/imagini/user.png" matTooltip="Change the user type">
+          <img class="user-icon" src="../../../assets/imagini/user.png" matTooltip="User">
         </button>
       </div>
 </div>
