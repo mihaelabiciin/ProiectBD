@@ -18,7 +18,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PlanTripComponent } from './components/plan-trip/plan-trip.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-// import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -29,7 +28,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { SeeRestaurantsHotelsComponent } from './components/see-restaurants-hotels/see-restaurants-hotels.component';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { EditLocatieModalComponent } from './components/edit-locatie-modal/edit-locatie-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteConfirmModalComponent } from './components/delete-confirm-modal/delete-confirm-modal.component';
+import { MatSortModule } from '@angular/material/sort';
+import { ActivitatiComponent } from './components/activitati/activitati.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,9 @@ import { SeeRestaurantsHotelsComponent } from './components/see-restaurants-hote
     PlanTripComponent,
     LoginPageComponent,
     SeeRestaurantsHotelsComponent,
+    EditLocatieModalComponent,
+    DeleteConfirmModalComponent,
+    ActivitatiComponent,
     
   ],
   imports: [
@@ -70,6 +77,9 @@ import { SeeRestaurantsHotelsComponent } from './components/see-restaurants-hote
     MatSlideToggleModule,
     MatSelectModule,
     MatOptionModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

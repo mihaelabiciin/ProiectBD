@@ -17,7 +17,6 @@ export class PlanTripComponent {
     locatieService.getLocatii().subscribe(
       (result) => {
         this.locatii = result as Locatie[];
-        console.log(this.locatii)
       },
       (error) => {
         this.snackBar.open("Nu se pot incarca locatiile");

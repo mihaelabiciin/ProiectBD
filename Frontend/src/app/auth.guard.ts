@@ -17,6 +17,15 @@ export class AuthGuard implements CanActivate {
     // Implement your logic to check user's permission
     const isNonAdmin = !this.authorizationService.isAdmin;
     const currentRoute = route.routeConfig?.path;
+
+    if (currentRoute == '' && localStorage.getItem('userToken') != null)
+    {
+      this.router.navigateByUrl(isNonAdmin? '/home': 'locatii');
+    }
+    else if (currentRoute == '')  
+    {
+      this.router.navigate(['/login']);
+    }
     
     if (isNonAdmin && !this.permittedPaths.includes(currentRoute!)) {
       if (localStorage.getItem('userToken') != null)
@@ -26,7 +35,7 @@ export class AuthGuard implements CanActivate {
       return false;
     }
     else if(!isNonAdmin && this.permittedPaths.includes(currentRoute!)){
-      if (localStorage.getItem('userToken') != null)
+      if (localStorage.getItem('userToken') != null) 
         this.router.navigate(['/locatii']);
       else 
         this.router.navigate(['/login']);

@@ -14,13 +14,15 @@ export class AppComponent {
   title = 'Frontend';
   visibleHeader: boolean = true;
 
-  constructor(private http: HttpClient, private authorizationService: AutorizationService) {
-    
+  constructor(private http: HttpClient, public authorizationService: AutorizationService) {
+
     this.visibleHeader = this.authorizationService.checkUser();
   }
 
   ngOnInit() {
-    this.visibleHeader = this.authorizationService.checkUser();
+    this.authorizationService.userStatus$.subscribe((isLoggedIn: boolean) => {
+      this.visibleHeader = isLoggedIn;
+    });
   }
   getSomeData() {
   }

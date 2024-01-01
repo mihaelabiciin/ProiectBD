@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutorizationService {
+  private userStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  userStatus$: Observable<boolean> = this.userStatusSubject.asObservable();
+
 
   isAdmin: boolean = localStorage.getItem('isAdmin') == 'true';
 
@@ -26,13 +30,14 @@ export class AutorizationService {
   checkUser() {
     if (localStorage.getItem('userToken') === null) {
       this.router.navigateByUrl('/login');
+      this.userStatusSubject.next(false);
       return false;
     }
+    this.userStatusSubject.next(true);
     return true;
   }
 
   setUser(email: string | undefined) {
-    console.log(email);
     if (email == undefined)
     {
       localStorage.removeItem('userToken');

@@ -4,4 +4,20 @@
     width: 70px;
 }
 
+.icon-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.actions-bar {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.center-text {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+}
 

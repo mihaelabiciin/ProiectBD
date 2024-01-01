@@ -4,7 +4,7 @@
     <div class="image-section" (click)="goToSeeRestaurantsHotels(location)">
       <img src="../../../assets/imagini/{{ i+1 }}.jpg" alt="Descriptive Text">
     </div>
-    <div class="text-section">
+    <div class="text-section" (click)="goToSeeRestaurantsHotels(location)">
       <div class="nume-statiune">{{ location.nume }}</div>
       <p>{{ location.descriere }}</p>
     </div>

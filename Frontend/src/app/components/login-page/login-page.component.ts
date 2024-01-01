@@ -19,7 +19,7 @@ export class LoginPageComponent {
     private snackBar: MatSnackBar,
     private router: Router) {
       console.log("here");  
-    this.autorizationService.setUser(undefined);
+    // this.autorizationService.setUser(undefined);
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -43,7 +43,6 @@ export class LoginPageComponent {
       let loginModel: LoginModel = new LoginModel(this.username!, this.password!);
       this.userService.login(loginModel).subscribe((user: User) => {
         this.autorizationService.setUser(user.email);
-        console.log(user);
         if (user.isAdmin)
         {
           this.router.navigateByUrl('/locatii');

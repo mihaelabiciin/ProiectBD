@@ -9,7 +9,7 @@ import { AutorizationService } from 'src/app/services/autorization.service';
 })
 export class SidebarComponent {
 
-  availableTabs = ['restaurante', 'locatii', 'hoteluri'];
+  availableTabs = ['restaurante', 'locatii', 'hoteluri', 'activitati'];
   selectedTab: string = "restaurante"
 
   constructor(private location: Location, 

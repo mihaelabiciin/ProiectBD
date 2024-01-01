@@ -4,8 +4,9 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
-    margin:0px;
+    margin: 0px;
 }
+
 /* bootstrap */
 .d-flex {
     display: flex;
@@ -39,8 +40,16 @@ body {
 .full-width {
     width: 100%
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .page-wrapper {
     margin: 1rem;
@@ -69,57 +78,72 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .custom-button {
     padding: 8px;
-   cursor: pointer;
-   transition-duration: 0.4s;
-   background-color: rgba(255, 181, 132, 0.829);
-   border-color: rgba(255, 181, 132, 0.829);
-   color: black;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    background-color: rgba(255, 181, 132, 0.829);
+    border-color: rgba(255, 181, 132, 0.829);
+    color: black;
 }
 
 .custom-button:hover {
-    background-color:white;
+    background-color: white;
     border-color: rgba(255, 181, 132, 0.829);
 }
 
-  input[type=text], select, .custom-textbox {
+input[type=text],
+select,
+.custom-textbox {
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
-    font-family:  Roboto;
+    font-family: Roboto;
     width: 250px;
-  }
+}
 
-  .eticheta {
+.eticheta {
     display: flex;
     align-items: center;
-  }
+}
 
-  .error {
+.error {
     color: red;
-  }
+}
 
-  .custom-dropdown {
+.custom-dropdown {
     width: 250px;
-  }
-
-  /* .sidebar-option {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding-left: 20px;
-} */
+}
 
 .label-text {
     margin-left: 10px;
     cursor: pointer;
-    color:#525252
+    color: #525252
 }
 
 .center-align {
     display: flex;
     justify-content: center;
 }
+
+/* modal stytles */
+
+.title-container {
+    flex-grow: 1;
+    /* Allow the title to grow and take available space */
+}
+
+.close-button-container {
+    margin-left: auto;
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    padding-top: 10px;
+    color: black;
+}
+
+/* end modal styles */

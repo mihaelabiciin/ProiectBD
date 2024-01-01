@@ -53,13 +53,77 @@ namespace Backend.Controllers
         {
             try
             {
-                var newLocatie = await _context.Tbllocatiis.AddAsync(locatie);
-                await _context.SaveChangesAsync();
-                return Ok(newLocatie.Entity);
+                var existingLocatie = await _context.Tbllocatiis.FindAsync(locatie.IdLocatie);
+
+                if (existingLocatie == null)
+                {
+                    var newLocatie = await _context.Tbllocatiis.AddAsync(locatie);
+                    await _context.SaveChangesAsync();
+                    return Ok(newLocatie.Entity);
+                }
+                else
+                {
+                    _context.Entry(existingLocatie).State = EntityState.Detached; // Detach the existing entity
+                    _context.Tbllocatiis.Update(locatie);
+                    await _context.SaveChangesAsync();
+
+                    return Ok(locatie);
+                }
+
+                
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error while fetching Locatii from the database.");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteLocatie(int id)
+        {
+            try
+            {
+                ushort uid = ushort.Parse(id.ToString());
+                var locatie = await _context.Tbllocatiis.FindAsync(uid);
+
+                if (locatie == null)
+                {
+                    return NotFound(); // Return 404 Not Found if the entity with the specified ID is not found
+                }
+
+                _context.Tbllocatiis.Remove(locatie);
+                await _context.SaveChangesAsync();
+
+                return NoContent(); // Return 204 No Content if the entity is successfully deleted
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while deleting Locatie from the database.");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Tbllocatii>> PutLocatie(int id, Tbllocatii locatie)
+        {
+            try
+            {
+                var existingLocatie = await _context.Tbllocatiis.FindAsync(id);
+
+                if (existingLocatie == null)
+                {
+                    return NotFound(); // Return 404 Not Found if the entity with the specified ID is not found
+                }
+
+                _context.Tbllocatiis.Update(locatie);
+                await _context.SaveChangesAsync();
+
+                return Ok(locatie); // Return the updated locatie
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while updating Locatie in the database.");
                 return StatusCode(500, "Internal Server Error");
             }
         }

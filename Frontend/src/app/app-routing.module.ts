@@ -8,6 +8,7 @@ import { PlanTripComponent } from './components/plan-trip/plan-trip.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { AuthGuard } from './auth.guard';
 import { SeeRestaurantsHotelsComponent } from './components/see-restaurants-hotels/see-restaurants-hotels.component';
+import { ActivitatiComponent } from './components/activitati/activitati.component';
 
 const routes: Routes = [ 
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
   {
     path: 'restaurante',
     component: RestauranteComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'activitati',
+    component: ActivitatiComponent,
     canActivate: [AuthGuard],
   },
   {

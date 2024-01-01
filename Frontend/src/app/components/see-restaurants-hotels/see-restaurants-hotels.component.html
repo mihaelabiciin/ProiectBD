@@ -1,1 +1,26 @@
-<p>see-restaurants-hotels works!</p>
+<div class="page-section">
+    <div>
+        <div class="filters-container">
+            <div class="filters-section-header">Locatii</div>
+            <div *ngFor="let checkbox of locatiiCheckboxes">
+                <mat-checkbox [(ngModel)]="checkbox.completed" (change)="locationChecboxesChanged(checkbox)">
+                    {{checkbox.name}}
+                </mat-checkbox>
+            </div>
+        </div>
+        <div class="filters-container">
+            <div class="filters-section-header">Other</div>
+            <div *ngFor="let checkbox of locatiiCheckboxes">
+                <mat-checkbox [(ngModel)]="checkbox.completed" (change)="locationChecboxesChanged(checkbox)">
+                    {{checkbox.name}}
+                </mat-checkbox>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        dsf
+    </div>
+</div>
