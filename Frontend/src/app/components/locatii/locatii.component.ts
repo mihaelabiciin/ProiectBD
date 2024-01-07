@@ -42,28 +42,25 @@ export class LocatiiComponent {
   }
 
   addLocatie() {
-    // this.locatieService.addLocatie(new Locatie(this.nume, this.descriere)).subscribe(result =>
-    //   {
-    //     this.snackBar.open('Locatie adaugata cu succes', 'Close', {
-    //       duration: 3000, // Set duration to 3000 milliseconds (3 seconds)
-    //     });
-    //     this.getLocatii();
-    //   },
-    //   (error) => {
-    //     this.snackBar.open(error, 'Close', {
-    //       duration: 3000, // Set duration to 3000 milliseconds (3 seconds)
-    //     });
-    //   }
-    // );
-
-
     const dialogRef = this.dialog.open(EditLocatieModalComponent, {
       data: { locatie: null, mode: 'add' }
     });
 
     dialogRef.afterClosed().subscribe((result: Locatie) => {
       if (result) {
-        
+        this.locatieService.addUpdateLocatie(result).subscribe(result =>
+          {
+            this.snackBar.open('Locatie adaugata cu succes', 'Close', {
+              duration: 3000, // Set duration to 3000 milliseconds (3 seconds)
+            });
+            this.getLocatii();
+          },
+          (error) => {
+            this.snackBar.open(error, 'Close', {
+              duration: 3000, // Set duration to 3000 milliseconds (3 seconds)
+            });
+          }
+        );
       }
 
     });
@@ -77,7 +74,7 @@ export class LocatiiComponent {
       dialogRef.afterClosed().subscribe((result: Locatie) => {
         if (result) {
           this.locatieService.addUpdateLocatie(result).subscribe(result =>
-            console.log(result));
+            {});
           // Handle the result after the modal is closed (if needed)
           console.log('The dialog was closed', result);
         }
@@ -87,7 +84,11 @@ export class LocatiiComponent {
 
   deleteLocatie(locatie: Locatie) {
       const dialogRef = this.dialog.open(DeleteConfirmModalComponent, {
-        data: locatie
+        data:
+        {
+          entity: locatie,
+          type: 'locatia',
+        } 
       });
 
       dialogRef.afterClosed().subscribe((deleteLocatie: boolean) => {

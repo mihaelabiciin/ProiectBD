@@ -24,7 +24,6 @@ export class PlanTripComponent {
     );
   }
   ngOnInit() {
-    
   }
 
   goToSeeRestaurantsHotels(location: Locatie) {

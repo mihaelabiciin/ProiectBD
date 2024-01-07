@@ -1,4 +1,5 @@
-﻿using Backend.Models;
+﻿using Backend.HelperModels;
+using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,6 +75,36 @@ namespace Backend.Controllers
                 _logger.LogError(ex, "Error while fetching Restaurante from the database.");
                 return StatusCode(500, "Internal Server Error");
             }
+        }
+
+        [HttpPost("saveImage")]
+        public IActionResult SaveImage([FromBody] SaveImageRequest request)
+        {
+            // Validate and process the request
+            // Save the image data to the specified folder
+
+            var locationName = request.LocationName;
+            var hotelName = request.HotelName;
+            var roomName = request.RoomName;
+
+            // Constructing the custom path
+            var customPath = Path.Combine("wwwroot", "images", locationName, hotelName, roomName);
+
+            // Ensure the directory exists
+            try
+            {
+                Directory.CreateDirectory(customPath);
+            }
+            catch( Exception ex)
+            {
+                var message = ex.Message;
+            }
+
+            // Save the image data to a file (assuming request.ImageData is the base64-encoded image data)
+            var fileName = Path.Combine(customPath, "image.jpg");
+            System.IO.File.WriteAllBytes(fileName, Convert.FromBase64String(request.ImageData));
+
+            return Ok(new { CustomPath = customPath });
         }
 
         [HttpDelete("{id}")]

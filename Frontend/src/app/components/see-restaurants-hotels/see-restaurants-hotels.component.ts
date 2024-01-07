@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Activitate } from 'src/app/models/activitate';
+import { Hotel } from 'src/app/models/hotel';
 import { Locatie } from 'src/app/models/locatie';
+import { Restaurant } from 'src/app/models/restaurant';
+import { ActivitateService } from 'src/app/services/activitate.service';
+import { HotelService } from 'src/app/services/hotel.service';
 import { LocatieService } from 'src/app/services/locatie.service';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 
 export class Checkbox {
   entityId: number;
@@ -23,9 +29,24 @@ export class Checkbox {
 export class SeeRestaurantsHotelsComponent {
   locationId: number | undefined;
   locatii: Locatie[] = [];
+  hoteluri: Hotel[] = [];
+  restaurante: Restaurant[] = [];
+  activitati: Activitate[] = [];
+
+  //filtered lists
+  filteredHoteluri: Hotel[] = [];
+  filteredRestaurante: Restaurant[] = [];
+  filteredActivitati: Activitate[] = [];
+
   locatiiCheckboxes: Checkbox[] = [];
   isLoading: boolean = true;
-  constructor(private route: ActivatedRoute, private locatieService: LocatieService) {
+  selectedEntity: 'hoteluri' | 'restaurante' | 'activitati' = 'restaurante';
+  constructor(private route: ActivatedRoute, 
+    private locatieService: LocatieService, 
+    private hotelService: HotelService,
+    private restaurantService: RestaurantService,
+    private activitatiService: ActivitateService,
+    private router: Router) {
 
   }
   ngOnInit() {
@@ -37,6 +58,9 @@ export class SeeRestaurantsHotelsComponent {
     });
 
     this.computeLocations();
+    this.computeHoteluri();
+    this.computeRestaurante();
+    this.computeActivitati();
   }
 
   computeLocations() {
@@ -44,6 +68,33 @@ export class SeeRestaurantsHotelsComponent {
       (locatii: Locatie[]) => {
         this.locatii = locatii;
         this.computeLocationsCheckboxes();
+      }
+    );
+  }
+
+  computeHoteluri() {
+    this.hotelService.getHoteluri().subscribe(
+      (hoteluri: Hotel[]) => {
+        this.hoteluri = hoteluri;
+        this.filteredHoteluri = hoteluri.filter(x => x.idLocatie == this.locationId)
+      }
+    );
+  }
+
+  computeRestaurante() {
+    this.restaurantService.getRestaurante().subscribe(
+      (restaurante: Restaurant[]) => {
+        this.restaurante = restaurante;
+        this.filteredRestaurante = restaurante.filter(x => x.idLocatie == this.locationId)
+      }
+    );
+  }
+
+  computeActivitati() {
+    this.activitatiService.getActivitati().subscribe(
+      (activitati: Activitate[]) => {
+        this.activitati = activitati;
+        this.filteredActivitati = activitati.filter(x => x.idLocatie == this.locationId)
       }
     );
   }
@@ -59,6 +110,24 @@ export class SeeRestaurantsHotelsComponent {
   }
 
   locationChecboxesChanged(checkbox: Checkbox) {
-    //update the results
+    const checkedLocationIds = this.locatiiCheckboxes
+      .filter(checkbox => checkbox.completed)
+      .map(checkbox => checkbox.entityId);
+
+      this.filteredHoteluri = this.hoteluri.filter(hotel => checkedLocationIds.includes(hotel.idLocatie));
+      this.filteredRestaurante = this.restaurante.filter(restaurante => checkedLocationIds.includes(restaurante.idLocatie));
+      this.filteredActivitati = this.activitati.filter(activitati => checkedLocationIds.includes(activitati.idLocatie));
+  }
+
+  onChange() {
+    console.log(this.selectedEntity)
+  }
+
+  getStarRange(numStars: number): number[] {
+    return Array.from({ length: numStars }, (_, index) => index);
+  }
+
+  goToCamere(hotelId: number) {
+    this.router.navigateByUrl('/camere?hotelId=' + hotelId);
   }
 }

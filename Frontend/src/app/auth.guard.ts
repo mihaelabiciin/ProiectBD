@@ -7,7 +7,7 @@ import { AutorizationService } from './services/autorization.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  private permittedPaths: string[] = ['home', 'plan-trip', 'restaurante-hotele'];
+  private permittedPaths: string[] = ['home', 'plan-trip', 'restaurante-hotele', 'camere', 'vacanta-ta'];
   constructor(private authorizationService: AutorizationService, private router: Router) {}
 
   canActivate(

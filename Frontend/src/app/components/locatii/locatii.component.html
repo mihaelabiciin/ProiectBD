@@ -4,33 +4,17 @@
     <label class="ms-2">Locatii</label>
   </div>
   <div class="page-container">
-    <div class="d-flex justify-content-center">Adauga Locatie</div>
-    <div class="eticheta">
-      <label class="label-name" for="numeLocatie">Nume:</label>
-      <input class="textbox-custom" type="text" [(ngModel)]="this.nume">
-    </div>
-    <div class="eticheta">
-      <label class="label-name center-textbox-label" for="Scor">Descriere:</label>
-      <textarea class="custom-textbox" [(ngModel)]="this.descriere"></textarea>
-    </div>
-    <div class="error">
-      {{this.addError}}
-    </div>
-    <div class="mt-3">
-      <button class="custom-button" type="button" (click)="addLocatie()">Adauga</button>
-    </div>
-  </div>
-
-  <div class="page-container">
     <div class="actions-bar">
-      <button mat-icon-button matTooltip="Adauga Locatie" (click)="addLocatie()">
-        <mat-icon>add</mat-icon>
-      </button>
-      <span class="center-text">Adauga Locatie</span>
+      <div class="action-header-button" (click)="addLocatie()"> 
+        <button mat-icon-button class="plus-button-header" >
+          <mat-icon>add</mat-icon>
+        </button>
+        <span class="center-text">Adauga Hotel</span>
+      </div>
     </div>
     
 
-    <table mat-table [dataSource]="locatii" matSort>
+    <table mat-table [dataSource]="locatii" matSort class="table-content">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let locatie"> {{locatie.idLocatie}} </td>
@@ -44,7 +28,7 @@
         <td mat-cell *matCellDef="let locatie"> {{locatie.descriere}} </td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef style="padding-left: 40px;"> Actions </th>
+        <th mat-header-cell *matHeaderCellDef style="padding-left: 40px;"> Actiuni </th>
         <td mat-cell *matCellDef="let locatie">
           <div class="icon-container">
             <button mat-icon-button matTooltip="Edit" (click)="editLocatie(locatie)">

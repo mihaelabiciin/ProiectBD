@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,6 +11,7 @@ export class AutorizationService {
 
 
   isAdmin: boolean = localStorage.getItem('isAdmin') == 'true';
+  userTokenChanged = new EventEmitter<boolean | null>();
 
   constructor(private router: Router) { 
   }
@@ -43,6 +44,7 @@ export class AutorizationService {
       localStorage.removeItem('userToken');
     }
     else {
+      this.userTokenChanged.emit(true);
       localStorage.setItem('userToken', email);
     }
   }

@@ -1,3 +1,5 @@
+import { Locatie } from "./locatie";
+
 export class Hotel {
     idHotel: number = 0;
     nume: string = "";
@@ -8,6 +10,7 @@ export class Hotel {
     micDejun: boolean = false;
     pretMicDejun: number | undefined;
     idLocatie: number = 0;
+    locatie: Locatie | undefined = undefined
 
     constructor() {
     }

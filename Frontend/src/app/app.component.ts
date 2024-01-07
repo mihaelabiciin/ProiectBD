@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -23,7 +23,11 @@ export class AppComponent {
     this.authorizationService.userStatus$.subscribe((isLoggedIn: boolean) => {
       this.visibleHeader = isLoggedIn;
     });
+    this.authorizationService.userTokenChanged.subscribe((token) => {
+      this.visibleHeader = token ?? false;
+    });
   }
+
   getSomeData() {
   }
 

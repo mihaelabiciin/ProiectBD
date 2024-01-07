@@ -17,4 +17,8 @@ export class EditLocatieModalComponent {
   onClose(): void {
     this.dialogRef.close();
   }
+
+  onSubmit() {
+    
+  }
 }

@@ -7,14 +7,92 @@
 }
 
 .filters-container {
-    padding: 10px;
-    width: auto;
+    padding: 15px;
+    width: 13vw;
     min-width: 150px;
     border: 1px solid lightgray;
     border-right: 1px solid lightgray;
+    border-radius: 15px;
+
 }
 
 .filters-section-header {
     font-weight: bold;
     font-size: 16px;
+    border-radius: 15px;
+}
+
+.filters {
+    margin-left: 10px;
+}
+
+.list-item-template {
+    margin: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    display: flex;
+    height: 200px;
+    width: 40vw;
+}
+
+.image-wrapper {
+    padding-top: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.entity-name {
+    color: #5a8c65;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    vertical-align: center;
+    min-width: 20vw;
+}
+
+.entity-address {
+    color: #5a8c65;
+}
+
+.entity-content-wrapper {
+    padding-top: 20px;
+    padding-right: 20px;
+    width: 260px;
+}
+
+.stars {
+    margin-left: 5px;
+    display: flex;
+}
+
+.price-wrapper {
+    align-items: flex-end;
+    display: flex;
+    justify-content: end;
+    width: 28vw;
+}
+
+.price-box {
+    background-color: #5a8c65;
+    /* Green color */
+    color: #ffffff;
+    /* White text */
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+}
+
+.activitati-container {
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    column-gap: 1vw;
+}
+
+.hotel-card {
+    cursor: pointer;
 }

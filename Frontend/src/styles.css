@@ -5,6 +5,7 @@
 
 body {
     margin: 0px;
+    background-color: rebeccapurple;
 }
 
 /* bootstrap */
@@ -36,6 +37,9 @@ body {
 .mt-3 {
     margin-top: 1rem;
 }
+.me-3 {
+    margin-right: 1rem;
+}
 
 .full-width {
     width: 100%
@@ -44,18 +48,22 @@ body {
 html,
 body {
     height: 100%;
+    /* background-color: rgb(247, 240, 240); */
 }
 
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    /* background-color: rgb(247, 240, 240); */
 }
 
 .page-wrapper {
     margin: 1rem;
+    margin-top: 5.375rem;
     gap: 1rem;
     display: flex;
     flex-direction: column;
+    background-color: #EAEDF2
 }
 
 .page-title {
@@ -69,7 +77,7 @@ body {
 
 .page-container {
     padding: 15px;
-    background-color: rgb(247, 240, 240);
+    background-color: white;
 }
 
 .icon {
@@ -144,6 +152,88 @@ select,
     min-width: 350px;
     padding-top: 10px;
     color: black;
+    overflow-x: hidden;
 }
 
 /* end modal styles */
+
+.actions-bar {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-content: center;
+    align-items: center;
+    background-color: #ffe4c4;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding-right: 10px;
+}
+
+.table-content {
+    border-bottom-left-radius: 15px !important; /* Adjust the border radius as needed */
+    border-bottom-right-radius: 15px !important;
+    tr>td {
+      background-color: #ffebcd;
+      border: 1px solid #ffe4c4;
+      opacity: 0.7;
+      transition: background-color 0.3s, opacity 0.3s;
+    }
+  
+    tr:hover {
+      background-color: #ffebcd;
+      opacity: 1;
+    }
+  
+    tr:last-child {
+      border-bottom-left-radius: 15px !important; /* Adjust the border radius as needed */
+      border-bottom-right-radius: 15px !important;
+    }
+  
+    tr:first-child {
+      border-bottom-left-radius: 15px; /* Adjust the border radius as needed */
+      border-bottom-right-radius: 15px;
+    }
+
+    th {
+        background-color: #ffe4c4 !important;
+        opacity: 1 !important;
+        border: 1px solid #ffe4c4;
+    }
+}
+
+.page-container {
+    background-color: #EAEDF2;
+    width: 87vw;
+}
+
+.action-header-button {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    gap: 0px;
+    padding-right: 10px;
+    margin-top: 5px;
+}
+
+.action-header-button:hover {
+    background-color: #f5dbbc;
+    border-radius: 30px;
+}
+
+.page-wrapper {
+    background-color: #EAEDF2;
+}
+
+.plus-button-header:hover {
+    background-color: #f5dbbc !important;
+}
+
+.center-text {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.mat-mdc-dialog-content {
+    overflow-x: hidden !important;
+}

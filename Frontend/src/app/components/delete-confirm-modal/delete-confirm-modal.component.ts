@@ -9,8 +9,12 @@ import { Locatie } from 'src/app/models/locatie';
 })
 export class DeleteConfirmModalComponent {
   constructor(public dialogRef: MatDialogRef<DeleteConfirmModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Locatie) { 
+    @Inject(MAT_DIALOG_DATA) public data: {
+      entity: any,
+      type: string,
+    }){ 
   }
+
 
   onClose(): void {
     this.dialogRef.close();

@@ -28,4 +28,8 @@ export class HeaderComponent {
     this.router.navigateByUrl('/login');
     this.hideBars.emit();
   }
+
+  goToBasket() {
+    this.router.navigateByUrl('/vacanta-ta');
+  }
 }

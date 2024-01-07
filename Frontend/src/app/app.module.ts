@@ -34,6 +34,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteConfirmModalComponent } from './components/delete-confirm-modal/delete-confirm-modal.component';
 import { MatSortModule } from '@angular/material/sort';
 import { ActivitatiComponent } from './components/activitati/activitati.component';
+import { AddEditRestaurantComponent } from './components/add-edit-modals/add-edit-restaurant/add-edit-restaurant.component';
+import { CamereComponent } from './components/camere/camere.component';
+import { AddEditHotelComponent } from './components/add-edit-modals/add-edit-hotel/add-edit-hotel.component';
+import { BasketComponent } from './components/basket/basket.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,10 @@ import { ActivitatiComponent } from './components/activitati/activitati.componen
     EditLocatieModalComponent,
     DeleteConfirmModalComponent,
     ActivitatiComponent,
+    AddEditRestaurantComponent,
+    AddEditHotelComponent,
+    CamereComponent,
+    BasketComponent,
     
   ],
   imports: [

@@ -32,8 +32,13 @@
   </div>
   </div>
   <div class="user-icon-wrapper-user-view">
+    <div class="me-2">
+      <button class="user-button" (click)="goToBasket()">
+        <img class="user-icon" src="../../../assets/imagini/plane.png" matTooltip="Calatoria mea">
+      </button>
+    </div>
     {{this.userEmail}}
-    <div>
+    <div class="me-2">
         <mat-menu #userMenu="matMenu">
           <button mat-menu-item (click)="editProfile()">Editeaza profilul</button>
           <button mat-menu-item (click)="logout()">Log out</button>

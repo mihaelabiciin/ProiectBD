@@ -26,4 +26,14 @@ export class RestaurantService {
   deleteRestaurant(id: number) {
     return this.http.delete(`${environment.baseUrl}/Restaurante/${id}`);
   }
+
+  saveImage(locationName: string, hotelName: string, roomName: string, imageData: string): Observable<any> {
+    const request = {
+      LocationName: locationName,
+      HotelName: hotelName,
+      RoomName: roomName,
+      ImageData: imageData,
+    };
+    return this.http.post(`${environment.baseUrl}/Restaurante/saveImage`, request);
+  }
 }

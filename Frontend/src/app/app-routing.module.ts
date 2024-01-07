@@ -9,6 +9,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { AuthGuard } from './auth.guard';
 import { SeeRestaurantsHotelsComponent } from './components/see-restaurants-hotels/see-restaurants-hotels.component';
 import { ActivitatiComponent } from './components/activitati/activitati.component';
+import { CamereComponent } from './components/camere/camere.component';
+import { BasketComponent } from './components/basket/basket.component';
 
 const routes: Routes = [ 
   {
@@ -48,6 +50,16 @@ const routes: Routes = [
   {
     path: 'restaurante-hotele',
     component: SeeRestaurantsHotelsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'camere',
+    component: CamereComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'vacanta-ta',
+    component: BasketComponent,
     canActivate: [AuthGuard],
   },
   {

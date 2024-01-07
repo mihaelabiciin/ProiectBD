@@ -18,7 +18,6 @@ export class LoginPageComponent {
     private autorizationService: AutorizationService,
     private snackBar: MatSnackBar,
     private router: Router) {
-      console.log("here");  
     // this.autorizationService.setUser(undefined);
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
@@ -106,17 +105,6 @@ export class LoginPageComponent {
     // Check if the passwords match and update the flag accordingly
     this.passwordsDontMatch = this.loginForm.hasError('confirmedValidator') && this.loginForm.get('confirmPassword')?.touched;
   }
-
-  // onKeyPress(event: KeyboardEvent) {
-  //   console.log(this.password);
-  //   console.log(this.confirmPassword)
-  //   if (this.password != this.confirmPassword)
-  //     this.passwordsDontMatch = true;
-  //   else
-  //     this.passwordsDontMatch = false;
-
-  //     console.log(this.passwordsDontMatch)
-  // }
 
   onKeyPress(event: KeyboardEvent): void {
     // Add your custom logic here based on the pressed key
