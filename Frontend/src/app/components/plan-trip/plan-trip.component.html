@@ -1,58 +1,11 @@
 <div class="content-1">
-  <div class="content">
-    <div class="content hover-animate">
-      <div class="image-section">
-        <img src="../../../assets/imagini/user-home.jpg" alt="Descriptive Text">
-      </div>
-      <div class="text-section">
-        <div class="nume-statiune">Mamaia</div>
-        <div style="font-size: 14px;">Mamaia este cea mai faimoasă și luxoasă stațiune de pe litoralul românesc, situată la malul Mării Negre. Este renumită pentru plajele sale nisipoase și aurii, apelor limpezi și activităților de recreere variate, oferind o atmosferă vibrantă și cosmopolită.</div>
-      </div>
+  <div class="content hover-animate" *ngFor="let location of locatii; let i = index;">
+    <div class="image-section" (click)="goToSeeRestaurantsHotels(location)">
+      <img src="../../../assets/imagini/{{ i+1 }}.jpg" alt="Descriptive Text">
     </div>
-    <div class="content hover-animate">
-      <div class="image-section">
-        <img src="../../../assets/imagini/user-home.jpg" alt="Descriptive Text">
-      </div>
-      <div class="text-section">
-        <div class="nume-statiune">Mamaia</div>
-        <p>This is some text next to the image.</p>
-      </div>
-    </div>
-  </div>
-  <div class="content">
-    <div class="content hover-animate">
-      <div class="image-section">
-        <img src="../../../assets/imagini/user-home.jpg" alt="Descriptive Text">
-      </div>
-      <div class="text-section">
-        <p>This is some text next to the image.</p>
-      </div>
-    </div>
-    <div class="content hover-animate">
-      <div class="image-section">
-        <img src="../../../assets/imagini/user-home.jpg" alt="Descriptive Text">
-      </div>
-      <div class="text-section">
-        <p>This is some text next to the image.</p>
-      </div>
-    </div>
-  </div>
-  <div class="content">
-    <div class="content hover-animate">
-      <div class="image-section">
-        <img src="../../../assets/imagini/user-home.jpg" alt="Descriptive Text">
-      </div>
-      <div class="text-section">
-        <p>This is some text next to the image.</p>
-      </div>
-    </div>
-    <div class="content hover-animate">
-      <div class="image-section">
-        <img src="../../../assets/imagini/user-home.jpg" alt="Descriptive Text">
-      </div>
-      <div class="text-section">
-        <p>This is some text next to the image.</p>
-      </div>
+    <div class="text-section" (click)="goToSeeRestaurantsHotels(location)">
+      <div class="nume-statiune">{{ location.nume }}</div>
+      <p>{{ location.descriere }}</p>
     </div>
   </div>
 </div>

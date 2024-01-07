@@ -6,3 +6,18 @@
     display: inline-block;
     width: 150px;
 }
+
+.actions-bar {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-content: center;
+    align-items: center;
+}
+
+.actions-bar {
+    background-color: #ffe4c4;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding-right: 10px;
+}

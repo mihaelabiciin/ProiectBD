@@ -5,7 +5,7 @@ namespace Backend.Models;
 
 public partial class Tblcamere
 {
-    public ushort Id { get; set; }
+    public ushort IdCamera { get; set; }
 
     public string? Tip { get; set; }
 

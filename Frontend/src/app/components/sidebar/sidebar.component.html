@@ -7,8 +7,12 @@
         <img class="icon" src="../../../assets/imagini/hotel.png">
         <label class="label-text">Hoteluri</label>
     </div>
-    <div *ngIf="this.autorizationService.getAdminRights()" id="restaurante" class="sidebar-option" routerLink="/restaurante" (click)="tabSelected('restaurante')">
+    <div id="restaurante" class="sidebar-option" routerLink="/restaurante" (click)="tabSelected('restaurante')">
         <img class="icon" src="../../../assets/imagini/restaurant.png">
         <label class="label-text">Restaurante</label>
+    </div>
+    <div id="activitati" class="sidebar-option" routerLink="/activitati" (click)="tabSelected('activitati')">
+        <img class="icon" src="../../../assets/imagini/swimming.png">
+        <label class="label-text">Activitati</label>
     </div>
 </div>

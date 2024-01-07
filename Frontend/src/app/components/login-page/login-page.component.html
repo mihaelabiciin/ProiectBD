@@ -1,0 +1,95 @@
+<div class="page">
+    <mat-card *ngIf="loginMode">
+        <mat-card-content class="card-content">
+            <div>
+                <img src="../../../assets/imagini/Logo.png" height="50px">
+            </div>
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                <h2>Log In</h2>
+                <mat-form-field>
+                    <input matInput placeholder="Email" [(ngModel)]="username" name="username" required email>
+                    <mat-error
+                        *ngIf="loginForm.controls['username']?.errors?.['email'] && loginForm.controls['username'].touched">
+                        Introdu un email valid
+                    </mat-error>
+                    <mat-error
+                        *ngIf="loginForm.controls['username']?.errors?.['required'] && loginForm.controls['username'].touched">
+                        Emailul este obligatoriu
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Parola" [(ngModel)]="password" name="password" required
+                        minlength="6">
+                    <mat-error
+                        *ngIf="loginForm.controls['password']?.errors?.['required'] && loginForm.controls['password'].touched">
+                        Parola este obligatorie
+                    </mat-error>
+                    <mat-error
+                        *ngIf="loginForm.controls['password']?.errors?.['minlength'] && loginForm.controls['password'].touched">
+                        Parola trebuie sa contina cel putin 6 caractere
+                    </mat-error>
+                </mat-form-field>
+                <mat-card-actions class="center-align">
+                    <button mat-raised-button color="secondary" [disabled]="!loginForm.form.valid">Login</button>
+                </mat-card-actions>
+                <p class="mt-3">
+                    Nu ai un cont?
+                    <a (click)="toggleLoginRegister()" routerLink="/login">Inregistrare</a>
+                </p>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="!loginMode">
+        <mat-card-content class="card-content">
+            <div>
+                <img src="../../../assets/imagini/Logo.png" height="50px">
+            </div>
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                <h2>Inregistrare</h2>
+                <mat-form-field>
+                    <input matInput placeholder="Email" [(ngModel)]="username" name="username" required email>
+                    <mat-error
+                        *ngIf="loginForm.controls['username']?.errors?.['email'] && loginForm.controls['username'].touched">
+                        Introdu un email valid
+                    </mat-error>
+                    <mat-error
+                        *ngIf="loginForm.controls['username']?.errors?.['required'] && loginForm.controls['username'].touched">
+                        Emailul este obligatoriu
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Parola" [(ngModel)]="password" name="password" required
+                        minlength="6" (keypress)="onKeyPress($event)">
+                    <mat-error
+                        *ngIf="loginForm.controls['password']?.errors?.['required'] && loginForm.controls['password'].touched">
+                        Parola este obligatorie
+                    </mat-error>
+                    <mat-error
+                        *ngIf="loginForm.controls['password']?.errors?.['minlength'] && loginForm.controls['password'].touched">
+                        Parola trebuie sa contina cel putin 6 caractere
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Confirmarea Parolei" [(ngModel)]="confirmPassword"
+                        name="confirmPassword" required (keyup)="checkPasswordsMatch()">
+
+                    <mat-error
+                        *ngIf="loginForm.controls['confirmPassword']?.errors?.['required'] && loginForm.controls['confirmPassword'].touched">
+                        Confirmarea Parolei este obligatorie
+                    </mat-error>
+
+                    <mat-error *ngIf="passwordsDontMatch">
+                        Parola si confirmarea parolei nu se potrivesc
+                    </mat-error>
+                </mat-form-field>
+                <mat-card-actions class="center-align">
+                    <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Inregistrare</button>
+                </mat-card-actions>
+                <p class="mt-3">
+                    <a (click)="toggleLoginRegister()" routerLink="/login">Inapoi la logare</a>
+                </p>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

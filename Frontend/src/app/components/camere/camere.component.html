@@ -1,0 +1,72 @@
+<div class="page-section">
+    <div style="margin-top: 8px; margin-left: 2.5vw;">
+        <div class="filters-container">
+            <div class="filters-section-header">Filtre camere:</div>
+            <mat-checkbox [(ngModel)]="vreaTot" (change)="toateChecked()">
+                Toate
+            </mat-checkbox>
+            <hr />
+            <h4>Tip camera</h4>
+            <mat-checkbox [(ngModel)]="vreaCameraSimpla" (change)="fitreazaCamere($event)">
+                Solo
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="vreaCameraDubla" (change)="fitreazaCamere($event)">
+                Dubla
+            </mat-checkbox>
+            <hr />
+            <h4>Facilitati</h4>
+            <mat-checkbox [(ngModel)]="vreaAerConditionat" (change)="fitreazaCamere($event)">
+                Aer Conditionat
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="vreaBalcon" (change)="fitreazaCamere($event)">
+                Balcon
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="vreaFrigider" (change)="fitreazaCamere($event)">
+                Frigider
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="vreaWifi" (change)="fitreazaCamere($event)">
+                Wifi
+            </mat-checkbox>
+        </div>
+    </div>
+    <div>
+        <div class="nume-hotel">
+            Hotel {{this.hotel?.nume}}
+        </div>
+        <div class="hotel-adress">
+            <img src="../../../assets/imagini/location.png" height="25px">
+            {{hotel?.adresa}}
+        </div>
+        <div class="activitati-container">
+            <div *ngFor="let camera of filteredCamere" class="list-item-template">
+                <div class="image-wrapper">
+                    <img src="../../../assets/imagini/hotel.png" height="100px">
+                </div>
+                <div class="entity-content-wrapper">
+                    <div class="entity-name">
+                        {{camera.tip}}
+                    </div>
+                    <div class="facilitati">
+                        <div *ngIf="camera.frigider" matTooltip="Acces Frigider">
+                            <img src="../../../assets/imagini/fridge.png" height="25px">
+                        </div>
+                        <div *ngIf="camera.balcon" matTooltip="Acces Balcon">
+                            <img src="../../../assets/imagini/balcon.png" height="25px">
+                        </div>
+                        <div *ngIf="camera.aerConditionat" matTooltip="Acces Aer Conditionat">
+                            <img src="../../../assets/imagini/aer_conditionat.png" height="25px">
+                        </div>
+                        <div *ngIf="camera.wifi" matTooltip="Acces Wifi">
+                            <img src="../../../assets/imagini/wifi.png" height="25px">
+                        </div>
+                    </div>
+                    <div class="price-wrapper">
+                        <button class="price-box" (click)="addToCos(camera)">
+                            {{camera.pret}} lei
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

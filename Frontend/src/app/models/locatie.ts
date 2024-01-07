@@ -1,5 +1,5 @@
 export class Locatie {
-    id: number = 0;
+    idLocatie: number = 0;
     nume: string = "";
     descriere: string | null = null;
 

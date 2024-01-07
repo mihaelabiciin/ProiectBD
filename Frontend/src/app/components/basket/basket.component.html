@@ -1,0 +1,87 @@
+<div class="baskcet-container">
+    <div class="basket-header">
+        <h1>Vacanta ta personalizata contine:</h1>
+        <h1>Total: <span class="price-text">{{totalPrice}} lei</span></h1>
+    </div>
+    <span *ngIf="camere.length > 0">Camere: </span>
+    <div class="activitati-container">
+        <div *ngFor="let camera of camere; let index = index" class="list-item-template">
+            <div class="image-wrapper">
+                <img src="../../../assets/imagini/hotel.png" height="100px">
+            </div>
+            <div class="entity-content-wrapper">
+                <div class="entity-name">
+                    <span *ngIf="camera.hotel != undefined">
+                        {{camera.hotel.nume}} &nbsp;
+                    </span>
+                    Camera {{camera.tip}}
+                </div>
+                <div class="facilitati">
+                    <div *ngIf="camera.frigider" matTooltip="Acces Frigider">
+                        <img src="../../../assets/imagini/fridge.png" height="25px">
+                    </div>
+                    <div *ngIf="camera.balcon" matTooltip="Acces Balcon">
+                        <img src="../../../assets/imagini/balcon.png" height="25px">
+                    </div>
+                    <div *ngIf="camera.aerConditionat" matTooltip="Acces Aer Conditionat">
+                        <img src="../../../assets/imagini/aer_conditionat.png" height="25px">
+                    </div>
+                    <div *ngIf="camera.wifi" matTooltip="Acces Wifi">
+                        <img src="../../../assets/imagini/wifi.png" height="25px">
+                    </div>
+                </div>
+                <div class="basket-buttons-container">
+                    <span class="price-box">
+                        {{camera.pret}} lei
+                    </span>
+                </div>
+                <div class="price-wrapper">
+                    <button mat-raised-button color="warn" class="remove-button danger" (click)="removeCamera(index)">
+                        <img src="../../../assets/imagini/bin.png" height="30px">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <span *ngIf="restaurante.length > 0">Mese la Restaurant:</span>
+    <div class="activitati-container">
+        <div *ngFor="let restaurant of restaurante; let index = index" class="list-item-template">
+            <div class="image-wrapper">
+                <img src="../../../assets/imagini/hotel.png" height="100px">
+            </div>
+            <div class="entity-content-wrapper">
+                <div class="entity-name">
+                    <span *ngIf="restaurant.locatie != undefined">
+                        {{restaurant.locatie.nume}}
+                    </span>
+                </div>
+                <div class="entity-content-wrapper">
+                    <div class="entity-name">
+                        {{restaurant.nume}}
+                    </div>
+                    <div class="entity-address" style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/location.png" height="20px">
+                        {{restaurant.adresa}}
+                    </div>
+                    <div style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/phone.png" height="20px">
+                        Contact: {{restaurant.contact}}
+                    </div>
+                    <div style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/main-dish.png" height="20px">
+                            Specific Restaurant: {{ restaurant.specificRestaurant }}
+                    </div>
+                    <div *ngIf="restaurant.notaRecenzie" style="display: flex; margin-top:5px;">
+                        Recenzie: {{restaurant.notaRecenzie}}
+                        <img src="../../../assets/imagini/star.png" height="20px">
+                    </div>
+                <div class="price-wrapper">
+                    <button mat-raised-button color="warn" class="remove-button danger" (click)="removeCamera(index)">
+                        <img src="../../../assets/imagini/bin.png" height="30px">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

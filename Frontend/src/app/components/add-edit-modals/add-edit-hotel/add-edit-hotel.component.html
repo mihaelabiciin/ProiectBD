@@ -1,0 +1,58 @@
+<div class="modal-header" mat-dialog-title>
+    <div class="title-container" *ngIf="data.mode == 'edit'">
+        <span>Editeaza Hotel</span>
+    </div>
+    <div class="title-container" *ngIf="data.mode == 'add'">
+        <span>Adauga Hotel</span>
+    </div>
+    <div class="close-button-container">
+        <button class="close-button" mat-icon-button (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+<ng-select class="custom-dropdown margins" [items]="data.locatii"
+    bindLabel="nume"
+    placeholder="Selecteaza locatia"
+    [(ngModel)]="selectedLocatie"
+    (change)="onLocatieChange($event)">
+</ng-select>
+<form #locatieForm="ngForm">
+    <mat-dialog-content>
+        <div class="dialog-content">
+            <label class="name-label">Nume</label>
+            <mat-form-field>
+                <input matInput placeholder="Nume" [(ngModel)]="data.hotel.nume" name="nume" required maxlength="45">
+            </mat-form-field>
+            <label class="name-label">Numar Stele</label>
+            <mat-form-field>
+                <input matInput placeholder="Numar Stele" [(ngModel)]="data.hotel.numarStele" name="numarStele" required>
+            </mat-form-field>
+            <label class="name-label">Nota Recenzie Hotel</label>
+            <mat-form-field>
+                <input matInput placeholder="Nota Recenzie Hotel" [(ngModel)]="data.hotel.notaRecenzieHotel" name="notaRecenzieHotel" required>
+            </mat-form-field>
+            <label class="name-label">Adresa</label>
+            <mat-form-field>
+                <input matInput placeholder="Adresa" [(ngModel)]="data.hotel.adresa" name="adresa" required>
+            </mat-form-field>
+            <label class="name-label">Contact</label>
+            <mat-form-field>
+                <input matInput placeholder="Contact" [(ngModel)]="data.hotel.contact" name="contact" required>
+            </mat-form-field>
+            <label class="name-label">Mic Dejun</label>
+            <mat-form-field>
+                <input matInput placeholder="Mic Dejun" [(ngModel)]="data.hotel.micDejun" name="micDejun" required>
+            </mat-form-field>
+            <label class="name-label">Pret Mic Dejun</label>
+            <mat-form-field>
+                <input matInput placeholder="Pret Mic Dejun" [(ngModel)]="data.hotel.pretMicDejun" name="pretMicDejun" required>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button class="mb-3 me-3" mat-raised-button color="basic" (click)="onSave()" [disabled]="!locatieForm.form.valid"
+            [mat-dialog-close]="data.hotel">Salveaza</button>
+    </mat-dialog-actions>
+</form>

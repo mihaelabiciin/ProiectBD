@@ -3,6 +3,11 @@ import { Component } from '@angular/core';
 import { Locatie } from 'src/app/models/locatie';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LocatieService } from 'src/app/services/locatie.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditLocatieModalComponent } from '../edit-locatie-modal/edit-locatie-modal.component';
+import { DeleteConfirmModalComponent } from '../delete-confirm-modal/delete-confirm-modal.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-locatii',
@@ -12,45 +17,85 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LocatiiComponent {
 
   addError: string = "";
-  locatii: Locatie[] = []; 
+  locatii: Locatie[] = [];
+  displayedColumns: string[] = ['id', 'nume', 'descriere', 'actions'];
+  dataSource = new MatTableDataSource<Locatie>();
 
   //form
   nume: string = "";
   descriere: string | null = null;
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
+  constructor(private http: HttpClient, private snackBar: MatSnackBar, private locatieService: LocatieService, private dialog: MatDialog) {
     this.getLocatii();
   }
 
 
   getLocatii() {
-    return this.http.get(`${environment.baseUrl}/Locatii` ).subscribe(
+    this.locatieService.getLocatii().subscribe(
       (result) => {
         this.locatii = result as Locatie[];
       },
       (error) => {
-        // Handle errors here, such as displaying an error message
         this.snackBar.open("Nu se pot incarca locatiile");
       }
     );
   }
 
   addLocatie() {
+    const dialogRef = this.dialog.open(EditLocatieModalComponent, {
+      data: { locatie: null, mode: 'add' }
+    });
 
-    if (this.nume == "")
-    {
-      this.addError = "Te rog adauga un nume!"
-    }
-    let locatie : Locatie = new Locatie(this.nume, this.descriere);
-    return this.http.post(`${environment.baseUrl}/Locatii`, locatie ).subscribe(
-      () => {
-        this.snackBar.open('Post Successful');
-        this.getLocatii();
-      },
-      (error) => {
-        this.snackBar.open(error);
+    dialogRef.afterClosed().subscribe((result: Locatie) => {
+      if (result) {
+        this.locatieService.addUpdateLocatie(result).subscribe(result =>
+          {
+            this.snackBar.open('Locatie adaugata cu succes', 'Close', {
+              duration: 3000, // Set duration to 3000 milliseconds (3 seconds)
+            });
+            this.getLocatii();
+          },
+          (error) => {
+            this.snackBar.open(error, 'Close', {
+              duration: 3000, // Set duration to 3000 milliseconds (3 seconds)
+            });
+          }
+        );
       }
-    );
-    
+
+    });
   }
+
+  editLocatie(locatie: Locatie) {
+      const dialogRef = this.dialog.open(EditLocatieModalComponent, {
+        data: { locatie: locatie, mode: 'edit' }
+      });
+
+      dialogRef.afterClosed().subscribe((result: Locatie) => {
+        if (result) {
+          this.locatieService.addUpdateLocatie(result).subscribe(result =>
+            {});
+          // Handle the result after the modal is closed (if needed)
+          console.log('The dialog was closed', result);
+        }
+
+      });
+    }
+
+  deleteLocatie(locatie: Locatie) {
+      const dialogRef = this.dialog.open(DeleteConfirmModalComponent, {
+        data:
+        {
+          entity: locatie,
+          type: 'locatia',
+        } 
+      });
+
+      dialogRef.afterClosed().subscribe((deleteLocatie: boolean) => {
+        if (deleteLocatie == true) {
+          this.locatieService.deleteLocatie(locatie.idLocatie).subscribe(() =>
+            this.getLocatii())
+        }
+      });
+    }
 }

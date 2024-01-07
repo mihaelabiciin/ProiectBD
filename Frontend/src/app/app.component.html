@@ -1,10 +1,10 @@
 <div class="body">
-  <app-header>
+  <app-header (hideBars)="hideBars($event)" *ngIf="visibleHeader">
   </app-header>
 
 
   <div class="d-flex flex-row full-width full-height">
-    <app-sidebar></app-sidebar>
-    <router-outlet></router-outlet>
+    <app-sidebar *ngIf="visibleHeader"></app-sidebar>
+    <router-outlet class="background-color"></router-outlet>
   </div>
 </div>  

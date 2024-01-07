@@ -1,0 +1,129 @@
+<div class="page-section">
+    <div style="margin-top: 50px; margin-left: 2.5vw;">
+        <div class="filters-container">
+            <div class="filters-section-header">Locatii</div>
+            <div *ngFor="let checkbox of locatiiCheckboxes">
+                <mat-checkbox [(ngModel)]="checkbox.completed" (change)="locationChecboxesChanged(checkbox)">
+                    {{checkbox.name}}
+                </mat-checkbox>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 50px; ">
+        <div class="filters">
+            <div>
+                <ng-select class="custom-dropdown" bindLabel="nume" placeholder="Selecteaza locatia"
+                    [(ngModel)]="selectedEntity" (change)="onChange()">
+                    <ng-option value="hoteluri">Hoteluri</ng-option>
+                    <ng-option value="restaurante">Restaurante</ng-option>
+                    <ng-option value="activitati">Activitati</ng-option>
+                </ng-select>
+            </div>
+            <div>
+                <!-- <filters here></filters> -->
+            </div>
+        </div>
+        <!-- Hoteluri -->
+        <div *ngIf="selectedEntity == 'hoteluri'" class="activitati-container">
+            <div *ngFor="let hotel of filteredHoteluri" class="list-item-template hotel-card" (click)="goToCamere(hotel.idHotel)">
+                <div class="image-wrapper">
+                    <img src="../../../assets/imagini/hotel.png" height="100px">
+                </div>
+                <div class="entity-content-wrapper">
+                    <div class="entity-name">
+                        {{hotel.nume}}
+                        <div *ngIf="hotel.numarStele" class="stars">
+                            <img *ngFor="let star of getStarRange(hotel.numarStele!)"
+                                src="../../../assets/imagini/star.png" height="15px">
+                        </div>
+                    </div>
+                    <div class="entity-address">
+                        {{hotel.adresa}}
+                    </div>
+                    <div *ngIf="hotel.notaRecenzieHotel" style="display: flex;">
+                        Recenzie: {{hotel.notaRecenzieHotel}}
+                        <img src="../../../assets/imagini/star.png" height="15px">
+                    </div>
+                    <div>
+                        10 camere
+                    </div>
+                    <div *ngIf="hotel.micDejun">
+                        <img src="../../../assets/imagini/breakfast.png" height="20px"
+                            matTooltip="Mic Dejun: {{ hotel.pretMicDejun }} lei">
+                    </div>
+                    <div style="height: 40px;" *ngIf="!hotel.micDejun"></div>
+                    <div style="height: 20px;" *ngIf="hotel.micDejun"></div>
+                    <div class="price-wrapper">
+                        <div class="price-box">
+                            100 - 500 lei
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurante -->
+        <div *ngIf="selectedEntity == 'restaurante'" class="activitati-container">
+            <div *ngFor="let restaurant of filteredRestaurante" class="list-item-template">
+                <div class="image-wrapper">
+                    <img src="../../../assets/imagini/restaurant.png" height="100px">
+                </div>
+                <div class="entity-content-wrapper">
+                    <div class="entity-name">
+                        {{restaurant.nume}}
+                    </div>
+                    <div class="entity-address" style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/location.png" height="20px">
+                        {{restaurant.adresa}}
+                    </div>
+                    <div style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/phone.png" height="20px">
+                        Contact: {{restaurant.contact}}
+                    </div>
+                    <div style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/main-dish.png" height="20px">
+                            Specific Restaurant: {{ restaurant.specificRestaurant }}
+                    </div>
+                    <div *ngIf="restaurant.notaRecenzie" style="display: flex; margin-top:5px;">
+                        Recenzie: {{restaurant.notaRecenzie}}
+                        <img src="../../../assets/imagini/star.png" height="20px">
+                    </div>
+                    <div class="price-wrapper">
+                        <div class="price-box">
+                            100 lei
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activitati -->
+        <div *ngIf="selectedEntity == 'activitati'" class="activitati-container">
+            <div *ngFor="let activitate of filteredActivitati" class="list-item-template">
+                <div class="image-wrapper">
+                    <img src="../../../assets/imagini/swimming.png" height="130px">
+                </div>
+                <div class="entity-content-wrapper">
+                    <div class="entity-name">
+                        {{activitate.nume}}
+                    </div>
+                    <div class="entity-address" style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/coach.png" height="20px">
+                        Antrenor: {{activitate.antrenor? "Da": "Nu"}}
+                    </div>
+                    <div style="display: flex; margin-top:5px;">
+                        <img src="../../../assets/imagini/phone.png" height="20px">
+                        Contact: {{activitate.contact}}
+                    </div>
+                    <div style="height: 40px;"></div>
+                    <div class="price-wrapper">
+                        <div class="price-box">
+                            {{activitate.pret}} lei
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

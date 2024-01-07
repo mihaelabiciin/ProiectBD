@@ -5,19 +5,24 @@
 .home-page {
     
     background-image: url("/assets/imagini/user-home.jpg");
-    background-size: contain;
+
+    /* background-size: contain;
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: top center; */
     width: 90%;
     min-width: 1300px;
     display: flex;
     
     flex-direction: column;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .home-body {
     width: 100vw;
-    height: 100vh;
+    height: 130vh;
     display: flex;
     justify-content: center;
 }

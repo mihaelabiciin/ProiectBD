@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutorizationService } from 'src/app/services/autorization.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +10,26 @@ import { AutorizationService } from 'src/app/services/autorization.service';
 })
 export class HeaderComponent {
 
-  userType: string;
-  selectUserType(userType: string) {
-    this.autorizationService.changeAdminRights(userType);
-    this.userType = userType;
+  @Output() hideBars = new EventEmitter<void>();
 
-    if (userType == "Admin")
-      this.router.navigate(['/locatii']);
-    else 
-      this.router.navigate(['/home']);
+  userEmail: string | null;
+
+  constructor(public authorizationService: AutorizationService, 
+    private router: Router) {
+    this.userEmail = localStorage.getItem('userToken');
   }
 
-  constructor(public autorizationService: AutorizationService, 
-    private router: Router) {
-    this.userType = autorizationService.getAdminRights()? "Admin" : "User";
+  editProfile() {
+    //redirect to edit user page
+  }
+
+  logout() {
+    this.authorizationService.setUser(undefined);
+    this.router.navigateByUrl('/login');
+    this.hideBars.emit();
+  }
+
+  goToBasket() {
+    this.router.navigateByUrl('/vacanta-ta');
   }
 }

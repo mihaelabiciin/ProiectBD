@@ -1,0 +1,107 @@
+.activitati-container {
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    column-gap: 1vw;
+}
+
+.list-item-template {
+    margin: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    display: flex;
+    height: 200px;
+    width: 40vw;
+}
+
+.page-section {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 80vh;
+    margin-top: 50px;
+}
+
+.filters-container {
+    padding: 15px;
+    width: 13vw;
+    min-width: 150px;
+    border: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.entity-content-wrapper {
+    padding-top: 20px;
+    padding-right: 20px;
+    width: 260px;
+}
+
+.price-wrapper {
+    align-items: flex-end;
+    display: flex;
+    justify-content: end;
+    width: 30vw;
+    margin-top: 1vw;
+}
+
+.price-box {
+    background-color: #5a8c65;
+    /* Green color */
+    color: #ffffff;
+    /* White text */
+    padding: 10px;
+    border-radius: 8px;
+    border-color: #4a7b54;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    min-width: 100px;
+}
+
+.price-box:hover {
+    background-color: #4a7b54; /* Darker green color on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transform: scale(1.10); /* Scale up the button on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Add smooth transition */
+}
+
+.image-wrapper {
+    padding-top: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.entity-name {
+    color: #5a8c65;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    vertical-align: center;
+    min-width: 20vw;
+}
+
+.facilitati {
+    font-size: 16px;
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.nume-hotel {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.hotel-adress {
+    padding: 15px;
+}

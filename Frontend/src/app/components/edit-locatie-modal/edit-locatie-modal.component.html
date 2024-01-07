@@ -1,0 +1,40 @@
+<div class="modal-header" mat-dialog-title>
+    <div class="title-container" *ngIf="data.mode == 'edit'">
+        <span>Editeaza Locatie</span>
+    </div>
+    <div class="title-container" *ngIf="data.mode == 'add'">
+        <span class="center-text">Adauga Locatie</span>
+    </div>
+    <div class="close-button-container">
+        <button class="close-button" mat-icon-button (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+<form #locatieForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+        <div class="dialog-content">
+            <mat-form-field>
+                <input matInput placeholder="Nume" [(ngModel)]="data.locatie.nume" name="nume" required>
+            </mat-form-field>
+            <mat-error
+                *ngIf="locatieForm.controls['nume']?.errors?.['required'] && locatieForm.controls['nume'].touched">
+                Numele este obligatoriu
+            </mat-error>
+
+            <mat-form-field>
+                <textarea matInput placeholder="Descriere" [(ngModel)]="data.locatie.descriere" rows="3"
+                    name="descriere" required></textarea>
+            </mat-form-field>
+            <mat-error
+                *ngIf="locatieForm.controls['descriere']?.errors?.['required'] && locatieForm.controls['descriere'].touched">
+                Descrierea este obligatoriu
+            </mat-error>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button class="mb-3 me-3" mat-raised-button color="basic" [disabled]="!locatieForm.form.valid"
+            [mat-dialog-close]="data.locatie">Salveaza</button>
+    </mat-dialog-actions>
+</form>

@@ -5,7 +5,7 @@ namespace Backend.Models;
 
 public partial class Tblrestaurante
 {
-    public ushort Id { get; set; }
+    public ushort IdRestaurant { get; set; }
 
     public string Nume { get; set; } = null!;
 
